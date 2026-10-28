@@ -83,6 +83,13 @@ body.reel .hud .brlab,body.reel .hud .bar,body.reel .hud .blab{opacity:0}
 .slide.leave{visibility:visible;animation:leave .45s var(--ease) both;z-index:1}
 @keyframes leave{to{opacity:0;transform:scale(.965);filter:blur(6px)}}
 .slide aside.script{display:none}
+/* 내용이 많은 장: 세로 간격과 상자 안쪽 여백을 줄여 아래 여백(940px) 안에 넣는다 */
+.slide.tight{gap:28px}
+.slide.tight .panel{padding-top:26px;padding-bottom:26px}
+.slide.tight .layer{padding-top:15px;padding-bottom:15px}
+.slide.tight .tier{padding-top:12px;padding-bottom:12px}
+.slide.tight .rule{padding-top:18px;padding-bottom:18px}
+.slide.tight .gate{padding-top:24px;padding-bottom:24px}
 
 /* type scale: 220 / 132 / 84 / 56 / 38 / 28 / 22 */
 .xxl{font-family:var(--f-disp);font-size:220px;line-height:1.02;letter-spacing:-.03em}
@@ -303,7 +310,7 @@ body.idle #hint{opacity:0}
   background:radial-gradient(circle,rgba(0,229,255,.28),rgba(0,229,255,.05) 70%);border:2px solid var(--cyan);display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-family:var(--f-mono);font-size:26px;letter-spacing:.12em;color:var(--cyan);text-align:center;gap:6px}
 .orbit .core b{font-family:var(--f-body);font-size:32px;color:var(--fg);letter-spacing:0;font-weight:700}
-.olab{position:absolute;font-family:var(--f-body);font-weight:700;font-size:36px;color:var(--fg);white-space:nowrap;transform:translate(-50%,-50%);
+.olab{position:absolute;font-family:var(--f-body);font-weight:700;font-size:36px;color:var(--fg);white-space:nowrap;translate:-50% -50%;
   padding:8px 18px;border:1px solid var(--rule);background:rgba(10,16,34,.85);border-radius:4px}
 .olab.a{border-color:var(--amber);color:var(--amber)}
 .utcs{display:flex;gap:28px;font-family:var(--f-mono);font-size:44px;color:var(--fg-3)}
@@ -670,7 +677,7 @@ AI에서 하네스는 모델 바깥의 모든 것입니다. 어떤 지시와 절
 이제 오픈 모델이 실제로 넘어지는 네 곳을 데이터로 보겠습니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 1 · 왜 하네스인가" data-title="실패 1 · 도구 호출" data-bg="calm">
+<section class="slide tight" data-sec="PART 1 · 왜 하네스인가" data-title="실패 1 · 도구 호출" data-bg="calm">
   <div class="eb" data-a="wipe" style="color:var(--bad)">FAILURE 01 / 04 · When2Call (NVIDIA, 2025)</div>
   <div class="lg bal" data-k style="--d:.2s">도구가 없는데도 도구를 부릅니다</div>
   <div class="bd" data-a="fade" style="--d:1s">쓸 수 있는 도구가 하나도 주어지지 않았는데 호출을 시도한 비율</div>
@@ -801,20 +808,18 @@ AI에서 하네스는 모델 바깥의 모든 것입니다. 어떤 지시와 절
 </section>
 <section class="slide" data-sec="PART 1 · 왜 하네스인가" data-title="근거 · 하네스 A/B" data-bg="storm">
   <div class="eb" data-a="wipe">EVIDENCE · revfactory/harness 선행 측정 (v1)</div>
-  <div class="row" style="flex:1;align-items:center;gap:80px">
-    <div class="col" style="gap:6px">
-      <div class="sm mono" data-a="fade" style="--d:.3s">평균 품질 점수 · 15개 소프트웨어 과제</div>
-      <div class="row" style="align-items:baseline;gap:34px">
-        <span class="big-num dim tab" style="font-size:250px" data-count="49.5" data-dec="1" data-dur="1" data-a="fade">0</span>
-        <span class="lg dim" data-a="fade" style="--d:.8s">→</span>
-        <span class="big-num cy glow tab" style="font-size:250px" data-count="79.3" data-from="49.5" data-dec="1" data-dur="1.6" data-a="fade">49.5</span>
-      </div>
+  <div class="col" style="flex:1;justify-content:center;gap:6px">
+    <div class="sm mono" data-a="fade" style="--d:.3s">평균 품질 점수 · 15개 소프트웨어 과제</div>
+    <div class="row" style="align-items:baseline;gap:34px">
+      <span class="big-num dim tab" style="font-size:250px" data-count="49.5" data-dec="1" data-dur="1" data-a="fade">0</span>
+      <span class="lg dim" data-a="fade" style="--d:.8s">→</span>
+      <span class="big-num cy glow tab" style="font-size:250px" data-count="79.3" data-from="49.5" data-dec="1" data-dur="1.6" data-a="fade">49.5</span>
     </div>
-    <div class="col grow" style="gap:22px">
-      <div class="panel" data-a="right" style="--d:1.4s"><span class="tag">품질</span><h3 style="margin-top:12px">+60%</h3><p>구조화된 사전 설정만 추가</p></div>
-      <div class="panel" data-a="right" style="--d:1.6s"><span class="tag g">승률</span><h3 style="margin-top:12px">15 / 15</h3><p>모든 과제에서 하네스 쪽이 우세</p></div>
-      <div class="panel" data-a="right" style="--d:1.8s"><span class="tag a">분산</span><h3 style="margin-top:12px">−32%</h3><p>결과의 들쭉날쭉함이 줄었다</p></div>
-    </div>
+  </div>
+  <div class="row" style="gap:26px">
+    <div class="panel grow" data-a="rise" style="--d:1.4s"><span class="tag">품질</span><h3 style="margin-top:12px">+60%</h3><p>구조화된 사전 설정만 추가</p></div>
+    <div class="panel grow" data-a="rise" style="--d:1.6s"><span class="tag g">승률</span><h3 style="margin-top:12px">15 / 15</h3><p>모든 과제에서 하네스 쪽이 우세</p></div>
+    <div class="panel grow" data-a="rise" style="--d:1.8s"><span class="tag a">분산</span><h3 style="margin-top:12px">−32%</h3><p>결과의 들쭉날쭉함이 줄었다</p></div>
   </div>
   <div class="src">저자 자체 측정 (n=15) · revfactory/claude-code-harness · 도입 판단 전에는 과제팀 자체 파일럿으로 같은 비교를 권장</div>
   <aside class="script">
@@ -834,7 +839,7 @@ AI에서 하네스는 모델 바깥의 모든 것입니다. 어떤 지시와 절
 두 번째 구간입니다. 상용 모델에 종속되지 않는 설계, 그리고 오픈소스 모델을 실제로 붙일 때 고려할 점입니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 2 · 모델 독립적 설계" data-title="역할 분리 · 누가 / 어떻게 / 언제" data-bg="calm">
+<section class="slide tight" data-sec="PART 2 · 모델 독립적 설계" data-title="역할 분리 · 누가 / 어떻게 / 언제" data-bg="calm">
   <div class="eb" data-a="wipe">revfactory/harness · 역할 분리</div>
   <div class="lg" data-k style="--d:.2s">누가, 어떻게, 언제를 따로 적습니다</div>
   <div class="row" style="flex:1;gap:50px;align-items:center">
@@ -850,9 +855,9 @@ AI에서 하네스는 모델 바깥의 모든 것입니다. 어떤 지시와 절
 │       └── <span class="a">briefing/SKILL.md</span> <span class="c"># 언제·순서</span>
 └── CLAUDE.md        <span class="c"># 최소 포인터</span></pre></div>
     <div class="col grow" style="gap:14px">
-      <div class="panel hl" data-a="right" style="--d:1.2s;padding:20px 30px"><span class="tag">에이전트 정의</span><h3 style="margin-top:8px;font-size:34px">누가 일하는가</h3><p>역할, 허용 도구, 입출력 규칙, 오류 처리</p></div>
-      <div class="panel" data-a="right" style="--d:1.45s;padding:20px 30px"><span class="tag g">스킬</span><h3 style="margin-top:8px;font-size:34px">어떻게 일하는가</h3><p>절차서. 필요할 때만 불러와 맥락을 아낀다</p></div>
-      <div class="panel hla" data-a="right" style="--d:1.7s;padding:20px 30px"><span class="tag a">오케스트레이터</span><h3 style="margin-top:8px;font-size:34px">누가 언제 어떤 순서로</h3><p>실행 모드, 데이터 전달, 재시도 규칙</p></div>
+      <div class="panel hl" data-a="right" style="--d:1.2s;padding:14px 30px"><span class="tag">에이전트 정의</span><h3 style="margin-top:8px;font-size:34px">누가 일하는가</h3><p>역할, 허용 도구, 입출력 규칙, 오류 처리</p></div>
+      <div class="panel" data-a="right" style="--d:1.45s;padding:14px 30px"><span class="tag g">스킬</span><h3 style="margin-top:8px;font-size:34px">어떻게 일하는가</h3><p>절차서. 필요할 때만 불러와 맥락을 아낀다</p></div>
+      <div class="panel hla" data-a="right" style="--d:1.7s;padding:14px 30px"><span class="tag a">오케스트레이터</span><h3 style="margin-top:8px;font-size:34px">누가 언제 어떤 순서로</h3><p>실행 모드, 데이터 전달, 재시도 규칙</p></div>
     </div>
   </div>
   <aside class="script">
@@ -861,7 +866,7 @@ revfactory/harness는 이 문제를 역할 분리로 풉니다. 에이전트 정
 왜 나누느냐. 모델을 바꿀 때 고쳐야 하는 곳이 한 군데로 모이기 때문입니다. 절차서와 순서는 모델과 상관없이 업무에서 나옵니다. 이 파일 구조 자체가 모델 독립성의 근거입니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 2 · 모델 독립적 설계" data-title="다섯 계층" data-bg="calm">
+<section class="slide tight" data-sec="PART 2 · 모델 독립적 설계" data-title="다섯 계층" data-bg="calm">
   <div class="eb" data-a="wipe">ARCHITECTURE · 5 LAYERS</div>
   <div class="row" style="flex:1;gap:60px;align-items:center">
     <div class="col" style="width:520px;gap:24px">
@@ -884,7 +889,7 @@ revfactory/harness는 이 문제를 역할 분리로 풉니다. 에이전트 정
 그 위 세 층, 도구 계약과 워크플로와 업무 명세는 모델과 상관이 없어야 합니다. 예보관이 어떤 질문을 하는지, 어떤 순서로 자료를 봐야 하는지, 도구가 무엇을 돌려주는지는 기상 업무에서 나오는 것이지 모델에서 나오는 게 아니니까요.
   </aside>
 </section>
-<section class="slide" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 1 · 형식 보장 ≠ 품질 보장" data-bg="calm">
+<section class="slide tight" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 1 · 형식 보장 ≠ 품질 보장" data-bg="calm">
   <div class="eb" data-a="wipe">CONSIDERATION 1 / 5 · 제약 디코딩</div>
   <div class="xl bal" data-k style="--d:.2s;font-size:112px">형식은 보장해도,<br><span class="am">품질은 보장하지 않습니다</span></div>
   <table class="tbl">
@@ -927,7 +932,7 @@ revfactory/harness는 이 문제를 역할 분리로 풉니다. 에이전트 정
 제가 얻는 교훈은 하나입니다. 스키마의 필드 순서가 추론의 순서를 정합니다. 근거와 불확실성을 먼저, 결론을 마지막에 쓰게 하십시오. 이건 예보관이 검토하기에도 좋은 순서입니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 2 · 업무별 모델 등급" data-bg="calm">
+<section class="slide tight" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 2 · 업무별 모델 등급" data-bg="calm">
   <div class="eb" data-a="wipe">CONSIDERATION 2 / 5 · 모델 등급 정책</div>
   <div class="lg bal" data-k style="--d:.2s">모든 단계에 가장 큰 모델이 필요하지는 않습니다</div>
   <div class="col" style="gap:14px">
@@ -963,7 +968,7 @@ Red Hat 연구진이 50만 건 넘게 평가했더니 FP8은 사실상 손실이
 그런데 에이전트 과제로 재 본 연구는 다릅니다. 4비트로 줄인 뒤 도구 사용 점수는 1에서 3%만 떨어졌는데, 실제 응용 과제의 정확도는 10에서 15% 떨어졌습니다. 평균이 가리는 부분이 있다는 뜻입니다. 양자화 결정은 반드시 우리 평가셋으로 재고 내리십시오.
   </aside>
 </section>
-<section class="slide" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 4 · 숫자는 도구에서" data-bg="calm">
+<section class="slide tight" data-sec="PART 2 · 모델 독립적 설계" data-title="고려 4 · 숫자는 도구에서" data-bg="calm">
   <div class="eb" data-a="wipe">CONSIDERATION 4 / 5 · VLM의 역할</div>
   <div class="lg bal" data-k style="--d:.2s">VLM에게 영상 속 숫자를 읽히지 마십시오</div>
   <div class="row" style="flex:1;gap:50px;align-items:center">
@@ -976,7 +981,7 @@ Red Hat 연구진이 50만 건 넘게 평가했더니 FP8은 사실상 손실이
       </div>
       <span class="tag d">영상 · 정성 정보</span>
     </div>
-    <div class="col grow" style="gap:20px">
+    <div class="col grow" style="gap:14px">
       <div class="panel" data-a="right" style="--d:1s"><span class="tag">VLM이 맡는 일</span><p style="margin-top:12px">에코 분포와 이동 방향을 서술하고, 도구 수치와 어긋나는 곳을 찾아 표시</p></div>
       <div class="term" data-a="right" style="--d:1.3s"><div class="tb"><i></i><i></i><i></i><span>get_point_obs · 모의 응답</span></div>
 <pre data-type="90" style="--d:1.6s">{"stn": <span class="k">108</span>, "name": <span class="s">"서울"</span>,
@@ -1128,7 +1133,7 @@ tools: Read, Grep    <span class="c"># 읽기 전용</span>
 파란 칸이 모델이 맡는 곳입니다. 셋뿐입니다. 나머지는 모델 성능과 상관없이 같은 순서로 돕니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 3 · 툴콜링과 오케스트레이션" data-title="계약 1·2 · 이름과 인자" data-bg="calm">
+<section class="slide tight" data-sec="PART 3 · 툴콜링과 오케스트레이션" data-title="계약 1·2 · 이름과 인자" data-bg="calm">
   <div class="eb" data-a="wipe">CONTRACT 01–02 · 이름과 인자</div>
   <div class="row" style="flex:1;gap:44px;min-height:0">
     <div class="term" style="width:1000px" data-a="left"><div class="tb"><i></i><i></i><i></i><span>tools/get_point_fcst.json</span></div>
@@ -1193,7 +1198,7 @@ tools: Read, Grep    <span class="c"># 읽기 전용</span>
 </section>
 <section class="slide" data-sec="PART 3 · 툴콜링과 오케스트레이션" data-title="계약 4 · MCP" data-bg="calm">
   <div class="eb" data-a="wipe">CONTRACT 04 · MODEL CONTEXT PROTOCOL</div>
-  <div class="hub" style="height:450px">
+  <div class="hub" style="height:450px;flex:none">
     <svg viewBox="0 0 1600 450" style="position:absolute;inset:0" aria-hidden="true">
       <g class="conn">
         <path d="M430 225H690" pathLength="1" data-a="draw" style="--d:1s;--dur:.5s;stroke:var(--cyan)"/>
@@ -1211,8 +1216,8 @@ tools: Read, Grep    <span class="c"># 읽기 전용</span>
     <div class="node" style="left:1340px;top:400px;border-color:var(--amber);--d:2.45s" data-a="right">시각·지점 정규화<small>KST↔UTC · 지명→지점번호</small></div>
   </div>
   <div class="row" style="gap:26px">
-    <div class="panel grow" data-a="rise" style="--d:2.8s"><h3>JSON-RPC 2.0 · stdio / Streamable HTTP</h3><p>폐쇄망에서는 stdio나 내부 HTTP. HTTP 서버는 Origin 검증, 로컬은 127.0.0.1 바인딩 권고</p></div>
-    <div class="panel grow" data-a="rise" style="--d:3s"><h3>2025년 12월 Linux Foundation 이관</h3><p>Agentic AI Foundation 기증 당시 월간 SDK 다운로드 9,700만+ · 활성 서버 1만 개</p></div>
+    <div class="panel grow" data-a="rise" style="--d:2.8s"><h3 style="font-size:34px">JSON-RPC 2.0 · stdio / Streamable HTTP</h3><p>폐쇄망에서는 stdio나 내부 HTTP. HTTP 서버는 Origin 검증, 로컬은 127.0.0.1 바인딩 권고</p></div>
+    <div class="panel grow" data-a="rise" style="--d:3s"><h3 style="font-size:34px">2025년 12월 Linux Foundation 이관</h3><p>Agentic AI Foundation 기증 당시 월간 SDK 다운로드 9,700만+ · 활성 서버 1만 개</p></div>
   </div>
   <div class="src">출처 · MCP Specification 2025-06-18 · MCP Blog, "MCP joins the Agentic AI Foundation" (2025-12-09)</div>
   <aside class="script">
@@ -1296,7 +1301,7 @@ MCP를 권하면서 반드시 같이 말씀드려야 하는 게 보안입니다.
 revfactory/harness의 워크플로 규칙도 같습니다. 실패한 단계의 결과를 걸러낸 뒤 빠진 개수를 반드시 기록하게 합니다. 일부만 보고 전부 본 것처럼 말하는 게 가장 위험하기 때문입니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 3 · 툴콜링과 오케스트레이션" data-title="오류 처리 네 가지 규칙" data-bg="calm">
+<section class="slide tight" data-sec="PART 3 · 툴콜링과 오케스트레이션" data-title="오류 처리 네 가지 규칙" data-bg="calm">
   <div class="eb" data-a="wipe">ERROR HANDLING · revfactory/harness 규칙</div>
   <div class="lg" data-k style="--d:.2s">오류 처리는 미리 적어 둔 규칙대로</div>
   <div class="rules">
@@ -1352,7 +1357,7 @@ revfactory/harness의 워크플로 규칙도 같습니다. 실패한 단계의 �
 예보는 매일, 매 시간 반복되는 업무입니다. 우리에게 필요한 건 한 번 잘하는 에이전트가 아니라 매번 같은 품질을 내는 에이전트입니다. 그리고 최근 연구에 따르면 모델이 똑똑해지는 속도보다 믿을 만해지는 속도가 훨씬 느립니다. 신뢰성은 모델이 아니라 하네스에서 확보해야 합니다.
   </aside>
 </section>
-<section class="slide" data-sec="PART 4 · 검증·가드레일·전문가 검토" data-title="검증 네 겹" data-bg="calm">
+<section class="slide tight" data-sec="PART 4 · 검증·가드레일·전문가 검토" data-title="검증 네 겹" data-bg="calm">
   <div class="eb" data-a="wipe">VERIFICATION · 4 LAYERS</div>
   <div class="lg bal" data-k style="--d:.2s">검증은 네 겹이고, 마지막 겹은 언제나 예보관입니다</div>
   <div class="gates">
@@ -1438,9 +1443,9 @@ Google DeepMind 연구에서, 외부 신호 없이 모델에게 스스로 답을
 <section class="slide" data-sec="PART 4 · 검증·가드레일·전문가 검토" data-title="권한 · 읽기 전용이 기본" data-bg="calm">
   <div class="eb" data-a="wipe">GUARDRAILS · LEAST PRIVILEGE</div>
   <div class="row" style="flex:1;gap:60px;align-items:center">
-    <div class="col" style="width:560px;gap:24px">
-      <div class="lg bal" data-k style="--d:.2s">권한은 <span class="cy">읽기 전용</span>에서 출발합니다</div>
-      <div class="bd" data-a="fade" style="--d:1.2s">OWASP는 과도한 기능, 과도한 권한, 과도한 자율성을 에이전트 사고의 근본 원인으로 꼽습니다(LLM06 Excessive Agency).</div>
+    <div class="col" style="width:600px;flex:none;gap:24px">
+      <div class="lg bal" data-k style="--d:.2s">권한은 <span style="white-space:nowrap"><span class="cy">읽기 전용</span>에서</span> 출발합니다</div>
+      <div class="bd" data-a="fade" style="--d:1.2s;font-size:34px">OWASP는 과도한 기능, 과도한 권한, 과도한 자율성을 에이전트 사고의 근본 원인으로 꼽습니다(LLM06 Excessive Agency).</div>
     </div>
     <table class="perm" data-a="rise" style="--d:1.4s">
       <tr><th>역할</th><th>자료 조회</th><th>작업 파일</th><th>외부 전송</th><th>예보 발표</th></tr>
@@ -1868,7 +1873,7 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
 .rule b{display:block;font-size:36px;color:var(--fg);line-height:1.3}
 .rule span{display:block;font-size:27px;color:var(--fg-2);margin-top:6px;line-height:1.45}
 .hub{position:relative;width:1600px;height:600px}
-.hub .node{position:absolute;transform:translate(-50%,-50%);padding:18px 26px;border:1px solid var(--rule);background:rgba(10,16,34,.92);border-radius:6px;font-size:30px;font-weight:700;color:var(--fg);white-space:nowrap}
+.hub .node{position:absolute;translate:-50% -50%;padding:18px 26px;border:1px solid var(--rule);background:rgba(10,16,34,.92);border-radius:6px;font-size:30px;font-weight:700;color:var(--fg);white-space:nowrap}
 .hub .node small{display:block;font-family:var(--f-mono);font-weight:400;font-size:19px;color:var(--fg-3);margin-top:4px}
 .loopbox{position:relative;width:560px;height:560px;flex:none}
 .stepc{font-family:var(--f-mono);font-size:64px;color:var(--fg)}
@@ -1949,7 +1954,7 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
 .btns{display:flex;gap:14px}
 .btns span{padding:14px 28px;border-radius:6px;font-weight:700;font-size:28px;border:1px solid}
 .cycle{position:relative;width:760px;height:760px;flex:none}
-.cycle .cn{position:absolute;transform:translate(-50%,-50%);padding:16px 22px;border:1px solid var(--rule);background:rgba(10,16,34,.94);border-radius:6px;font-size:28px;font-weight:700;color:var(--fg);text-align:center;white-space:nowrap}
+.cycle .cn{position:absolute;translate:-50% -50%;padding:16px 22px;border:1px solid var(--rule);background:rgba(10,16,34,.94);border-radius:6px;font-size:28px;font-weight:700;color:var(--fg);text-align:center;white-space:nowrap}
 .cycle .cn small{display:block;font-family:var(--f-mono);font-weight:400;font-size:19px;color:var(--fg-3);margin-top:4px}
 </style>
 
@@ -2044,7 +2049,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
   <button id="bPrev" type="button" aria-label="이전 장">‹ <span class="lbl">이전</span></button>
   <span class="cnt" id="cnt">1 / 1</span>
   <button id="bNext" type="button" aria-label="다음 장"><span class="lbl">다음</span> ›</button>
-  <button id="bNotes" type="button" aria-pressed="false" title="스크립트 켜기/끄기 (S)"><span class="sw"></span>스크립트 <span class="st">OFF</span></button>
   <button id="bReplay" type="button" title="이 장 다시 재생 (R)">↻ <span class="lbl">다시 재생</span></button>
   <button id="bToc" type="button" title="목차 (T)">☰ <span class="lbl">목차</span></button>
   <button id="bFull" type="button" title="전체 화면 (F)">⤢ <span class="lbl">전체 화면</span></button>
@@ -2062,7 +2066,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
     <div class="keys">
       <kbd>→ / Space / PgDn</kbd><span>다음 장 (프레젠터 리모컨 지원)</span>
       <kbd>← / PgUp</kbd><span>이전 장</span>
-      <kbd>S</kbd><span>발표 스크립트 켜기 / 끄기</span>
       <kbd>R</kbd><span>현재 장의 모션 다시 재생 (1장에서는 오프닝 쇼릴)</span>
       <kbd>T</kbd><span>목차</span>
       <kbd>F</kbd><span>전체 화면</span>
@@ -2072,7 +2075,7 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
     </div>
   </div>
 </div>
-<div id="hint">S 스크립트 · T 목차 · ? 단축키</div>
+<div id="hint">T 목차 · ? 단축키</div>
 </div><!-- /app -->
 <script>
 (() => {
@@ -2226,13 +2229,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
     });
     body.scrollTop = 0;
   }
-  function setNotes(on) {
-    document.body.classList.toggle('notes-on', on);
-    $('#bNotes').setAttribute('aria-pressed', on ? 'true' : 'false');
-    $('#bNotes .st').textContent = on ? 'ON' : 'OFF';
-    store.set('hx-notes', on ? '1' : '0');
-    fit();
-  }
 
   /* ---------- navigation ---------- */
   function restart(el) { el.classList.remove('on'); void el.offsetWidth; el.classList.add('on'); }
@@ -2324,7 +2320,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
 
   /* ---------- controls ---------- */
   $('#bPrev').onclick = prev; $('#bNext').onclick = next;
-  $('#bNotes').onclick = () => setNotes(!document.body.classList.contains('notes-on'));
   $('#bToc').onclick = () => openOvl('toc');
   $('#bHelp').onclick = () => openOvl('help');
   $('#bReplay').onclick = () => go(cur, { force: true });
@@ -2349,7 +2344,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
     else if (['ArrowLeft', 'PageUp', 'Backspace', 'ArrowUp'].includes(k)) { e.preventDefault(); prev(); }
     else if (k === 'Home') go(0);
     else if (k === 'End') go(N - 1);
-    else if (k === 's' || k === 'S') setNotes(!document.body.classList.contains('notes-on'));
     else if (k === 't' || k === 'T') anyOvl() ? closeOvl() : openOvl('toc');
     else if (k === 'r' || k === 'R') go(cur, { force: true });
     else if (k === 'f' || k === 'F') $('#bFull').click();
@@ -2376,7 +2370,6 @@ AgentDojo라는 평가에서 GPT-4o는 공격이 없을 때 69%의 과제를 해
   const h = /^#s(\d+)$/.exec(location.hash);
   const startAt = h ? parseInt(h[1], 10) - 1 : 0;
   if (!RENDER) {
-    setNotes(store.get('hx-notes') === '1');
     go(startAt);
     wake();
     requestAnimationFrame(loop);
